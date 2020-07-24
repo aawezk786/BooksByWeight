@@ -26,7 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { SidebarModule } from 'ng-sidebar';
+
 import {
   GoogleLoginProvider,
   FacebookLoginProvider,
@@ -62,8 +62,8 @@ import { CartComponent } from './cart/cart.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     SocialLoginModule,
-    CarouselModule,
-    SidebarModule.forRoot()
+    CarouselModule
+    
     
 
 
