@@ -77,7 +77,7 @@ import { CartComponent } from './cart/cart.component';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '502472303125-c2535tb9j8s1m26ht2e0ld54j94j40bt.apps.googleusercontent.com'
+              '630153345580-29pt86oukbipoj7sj3ofrhrdl5895rvq.apps.googleusercontent.com'
             ),
           },
           {
