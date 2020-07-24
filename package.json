@@ -33,8 +33,6 @@
     "jw-paginate": "^1.0.4",
     "jwt-decode": "^2.2.0",
     "material-design-icons": "^3.0.1",
-    "ng-sidebar": "^9.4.2",
-    "ngx-aside": "^1.4.2",
     "ngx-flickity": "0.0.9",
     "ngx-owl-carousel-o": "^3.0.1",
     "ngx-pagination": "^5.0.0",
