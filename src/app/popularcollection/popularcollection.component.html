@@ -1,0 +1,72 @@
+
+  <div class="card p-2 btc">
+    <div class="row">
+      <div class="col ">
+  <span class="font-weight-bolder org" style="font-size: large;">POPULAR COLLECTION ON BOOKS</span>
+  <span class=" float-right  button--next"  (click)="owlCar.next()">
+          <span class="material-icons org">
+            navigate_next
+            </span>
+        </span>
+        <span class=" float-right button--previous"  (click)="owlCar.prev()" >
+          <span class="material-icons org">
+            navigate_before
+            </span>
+        </span>
+  
+      </div>
+  
+    </div>
+  </div>
+
+  <owl-carousel-o [options]="customOptions" #owlCar>
+    <ng-container *ngFor="let books of books$.books"> 
+
+      <ng-template carouselSlide>
+        <div class="slide">
+          <div class="p-2">
+            <div class="s nopadding">
+              <div class="content">
+                <div class="content-overlay"></div>
+                <img class="card-img-top" height="340px" src="{{books.book_img[0]}}" alt=" BOOKS ">
+                <div class="content-details fadeIn-bottom">
+  
+                  <h3 class="content-title">
+                    <a target="_blank" style="color: black; cursor: pointer;"    (click)="productHome(books._id)" >
+                      <span class="material-icons org">
+                        add &nbsp;&nbsp;
+                      </span>
+                    </a>
+                      
+                      <a href="#">
+                          <span class="material-icons org">
+                              add_shopping_cart &nbsp;&nbsp;
+                      </span></a><a href="#"><span class="material-icons org">
+                          favorite_border
+                      </span></a></h3>
+  
+                </div>
+  
+              </div>
+            </div>
+  
+            <div class="text-center" style="text-align: center; padding: 0px 20px 0px 20px;">
+              {{books.book_name}}
+              <br>
+            </div>
+            <div class="text-center">
+              <s style="color: rgba(107, 105, 105, 0.61);">&#8377;
+                  {{books.mrp}}
+              </s> &nbsp;
+              <span style="color:red">&#8377;
+                  {{books.selling_price}}Rs
+              </span>
+            </div>
+          </div>
+        </div>
+    </ng-template>
+    </ng-container>
+   
+  
+
+</owl-carousel-o>

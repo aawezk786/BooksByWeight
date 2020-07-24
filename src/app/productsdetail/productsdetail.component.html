@@ -1,0 +1,197 @@
+<div class="p-2">
+  <div class="section1">
+
+    <app-header></app-header>
+    <div class="bg-image" style="position: relative;
+          text-align: center;">
+      <div style="  position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%); font-size: xx-large;" class="org">
+        BOOK DETAILS <br><br>
+        Home / Details
+      </div>
+    </div>
+
+
+    <div style="margin-left: 50px; margin-right: 50px;">
+      <div class="row g-0" style="padding-bottom: 30px;" *ngFor="let book of books$.books">
+        <div class="col-xs-12 col-md-6 col-lg-6">
+
+
+          <div class="row g-0">
+
+            <div class="col-md-3 p-1">
+              <div class="row g-1 " style="padding-bottom: 5px;" *ngFor="let img of book.book_img">
+                <img src="{{img}}" class="img-fluid" style="height: 150px; width: 150px;">
+
+              </div>
+
+            </div>
+            <div class="col-md-9 p-1">
+              <img src="{{book.book_img[0]}}" class="img-fluid" width="450px">
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="col-xs-12 col-md-6 col-xl-6 col-lg-6">
+          <form>
+            <div class="container-fluid">
+              <h1>
+                {{book.book_name}}
+              </h1>
+              <br>
+              <div>
+                by {{book.author_name}}
+              </div>
+              <br>
+              <div>
+                <b>ISBN:</b> {{book.Isbn_no}}
+              </div>
+
+              <div>
+                <b>Publisher: </b> {{book.publisher}}
+              </div>
+              <br>
+              <div style="padding-bottom: 10px ;">
+                <b>Condition:</b>
+              </div>
+              <div class="col-xs-12 col-lg-8 ">
+                <select style=" border-radius: 0px !important;" class="form-select" aria-label="Default select example">
+                  <option selected value="1">Pre-Owned Good</option>
+                  <option value="2">Pre-Owned Like New</option>
+                  <option value="3">New</option>
+                </select>
+                <br>
+                <div style="padding-bottom: 10px ;">
+                  <b>Print Type:</b>
+                </div>
+
+                <select style="border-radius: 0px !important;" class="form-select" aria-label="Default select example">
+                  <option selected value="1">HardBack</option>
+                  <option value="2">PaperBack</option>
+
+                </select>
+                <br>
+
+              </div>
+              <div>
+                <b>MRP:</b> <s>{{book.mrp}}&#8377;</s>
+              </div>
+              <br>
+              <div>
+                <b>Selling Price:</b><span style="color: #ff4136 ; 
+                font-size: 2rem;"> &#8377;{{book.selling_price}}</span>
+              </div>
+              <br>
+              <div>
+                <b>You save </b> <s>&#8377;{{book.saved_price}}</s>
+              </div>
+              <br>
+              <div style="color: blue; font-size: 2rem;">
+                <b>Sale Price: &#8377;{{book.sale_price}}</b>
+              </div>
+              <br>
+              <div>
+                Quantity: {{book.quantity}}
+              </div>
+              <br>
+              <div class="row d-flex flex-row ">
+                <div class="c  bg-org card text-center p-2" style="width: 30%; cursor: pointer;"> ADD TO CART </div>
+                &nbsp;&nbsp;&nbsp;
+                <div class="c bg-org card text-center p-2" style="width: 10%;cursor: pointer;"> <span
+                    class="material-icons justify-content-center">
+                    favorite_border
+                  </span></div>&nbsp;&nbsp;&nbsp;
+                <div class="c  bg-org card text-center p-2" style="width: 10%;cursor : pointer"> <span
+                    class="material-icons justify-content-center">
+                    email
+                  </span></div>
+                  
+              </div>
+              
+             <div style="margin-top: 10px;">
+               
+              <li class=" list-group-item" style="border: none;">
+                <span style="margin-right: 10px; text-decoration: none; color: #666666;">Share:</span>
+                <a href="#" class="round" style="margin-right: 10px;"><img src="../../assets/icons/facebook.png" height="30px" width="30px" alt=""></a>
+                <a href="#"class="round"style="margin-right: 10px;"><img src="../../assets/icons/twitter.png" height="30px" width="30px" alt=""></a>
+                <a href="#"class="round"style="margin-right: 10px;"><img src="../../assets/icons/instagram.png" height="30px" width="30px" alt=""></a>
+                <a href="#"class="round"style="margin-right: 10px;"><img src="../../assets/icons/google.png" height="30px" width="30px" alt=""></a>
+                
+                
+                      </li>
+             </div>
+
+
+
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <span style="border-bottom: rgb(197, 197, 197) solid 1px;" class="d-flex justify-content-center">
+        <span class="card" style=" border-top: none;
+     border-left: none;
+     border-right: none;
+     border-bottom: 2px solid #ff4136 ; 
+     font-size: 1.5rem; color: rgb(92, 88, 88);"> Description </span>
+      </span>
+
+      <div *ngFor="let book of books$.books">
+        <br>
+        <p style="color: rgb(131, 128, 128); text-align: justify;
+        text-justify: inter-word; ">
+          {{book.description}}
+        </p>
+        <br>
+        <ul>
+          <li class="org" style="list-style-type: none;">
+            <span class="material-icons">
+              play_circle_filled
+            </span>
+            <b>Publication Year:</b> {{book.publication_year}}</li>
+          <br>
+          <li class="org" style="list-style-type: none;">
+            <span class="material-icons">
+              play_circle_filled
+            </span>
+            <b>No of Pages:</b>{{book.no_Of_pages}}</li>
+          <br>
+          <li class="org" style="list-style-type: none;">
+            <span class="material-icons">
+              play_circle_filled
+            </span>
+
+            <b>Language: </b>{{book.language}}</li>
+          <br>
+          <li class="org" style="list-style-type: none;">
+            <span class="material-icons">
+              play_circle_filled
+            </span>
+            <b>Dimensions: </b>{{book.dimensions}}</li>
+          <br>
+          <li class="org" style="list-style-type: none;">
+            <span class="material-icons">
+              play_circle_filled
+            </span>
+            <b>Weight:</b> {{book.weight}}</li>
+        </ul>
+
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="stickyfooter">
+    <app-footer></app-footer>
+  </div>
+</div>
+

@@ -1,0 +1,139 @@
+<div class="p-2">
+  <div class="section1">
+
+    <app-header></app-header>
+
+    <div class="bg-image" style="position: relative;
+          text-align: center;">
+      <div style="  position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%); font-size: xx-large;" class="org">
+        BOOKS <br>
+        Home / Cart
+
+      </div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <table style="text-align: center; width:100%;">
+            <tr style="border: 1px solid #c1c1c1;">
+              <th style="border: 1px solid #c1c1c1;">BOOK COVER</th>
+              <th style="border: 1px solid #c1c1c1;">BOOK TITLE</th>
+              <th style="border: 1px solid #c1c1c1;">PRICE(₹)</th>
+              <th style="border: 1px solid #c1c1c1;">BOOK WEIGHT</th>
+              <th style="border: 1px solid #c1c1c1;">QUANTITY</th>
+              <th style="border: 1px solid #c1c1c1;">TOTAL</th>
+              <th style="border: 1px solid #c1c1c1;">REMOVE</th>
+            </tr>
+            <tr style="border-width: 1px;">
+              <td style="border-width: 1px"><a><img src=" ../../assets/images/1.jpeg" class="high"></a></td>
+              <td style="border-width: 1px"><a href="#"
+                  style="font-size: 14px; color: #6f6f6f; font-weight: 700; text-decoration: none;">Vestibulum
+                  suscipit</a></td>
+              <td style="border-width: 1px"><span
+                  style="font-size: 14px; color: #6f6f6f; font-weight: 700;">₹165.00</span>
+              </td>
+              <td style="border-width: 1px"><span>0.65 Kg</span></td>
+              <td style="border-width: 1px"><input type="number" value="1"></td>
+              <td style="border-width: 1px"><span
+                  style="font-size: 14px; color: #6f6f6f; font-weight: 700;">₹165.00</span>
+              </td>
+              <td style="border-width: 1px"><a href="#"><img src="../../assets/images/bin.png"></a> </td>
+            </tr>
+            <tr style="border-width: 1px;">
+              <td style="border-width: 1px"><a><img src="../../assets/images/1.jpeg" class="high"></a></td>
+              <td style="border-width: 1px"><a href="#"
+                  style="font-size: 14px; color: #6f6f6f; font-weight: 700; text-decoration: none;">Vestibulum
+                  dictum magna</a></td>
+              <td style="border-width: 1px"><span
+                  style="font-size: 14px; color: #6f6f6f; font-weight: 700;">₹50.00</span>
+              </td>
+              <td style="border-width: 1px"><span>0.80 Kg</span></td>
+              <td style="border-width: 1px"><input type="number" value="1"></td>
+              <td style="border-width: 1px"><span
+                  style="font-size: 14px; color: #6f6f6f; font-weight: 700;">₹50.00</span>
+              </td>
+              <td style="border-width: 1px"><a href="#"><img src="../../assets/images/bin.png"></a> </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-top: 44px;">
+      <div class="row">
+        <div class="col-sm-8">
+          <button class="button button1"><a href="#" class="shop"
+              style="font-size: 12px; color: white; font-weight: 700; text-decoration: none; font-family: sans-serif;">CONTINUE
+              SHOPPING</a></button>
+          <br>
+          <h3 class="coup org">COUPON</h3>
+          <p>Enter your coupon code if you have one.</p>
+          <input type="text" placeholder="Coupon code">
+          <button class="button button1" style="margin-top: 0px;"><a href="#" class="shop"
+              style="font-size: 12px; color: white; font-weight: 700; text-decoration: none; font-family: sans-serif;">APPLY
+              COUPON</a></button>
+        </div>
+        <div class="col-sm-4" style="text-align: right;">
+          <div class="cart-totals">
+            <h2>CART TOTALS</h2>
+            <table>
+              <tbody>
+                <tr class="cart-subtotal">
+                  <th>SUBTOTAL</th>
+                  <td><span class="amount" style="font-weight: bold;">₹215.00</span></td>
+                </tr>
+                <tr class="cart-subtotal">
+                  <th>TOTAL BOOK WEIGHT</th>
+                  <td><span class="amount" style="font-weight: bold;">1.45 Kg</span></td>
+                </tr>
+                <tr class="shipping">
+                  <th>SHIPPING</th>
+                  <td>
+                    <ul id="shipping_method" style="list-style-type: none; font-weight: bold;">
+                      <li>
+
+                        <label>
+                          Flat Rate: <span class="amount">₹50.00/ Book</span>
+                        </label>
+                      </li>
+                      <li>
+
+                        <label>
+                          Free Shipping above ₹500
+                        </label>
+                      </li>
+                      <li></li>
+                    </ul>
+
+                  </td>
+                </tr>
+                <tr class="order-total">
+                  <th style="font-size: 20px;">TOTAL</th>
+                  <td style="text-align: right;">
+                    <strong><span class="amount">₹215.00</span></strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="wc-proceed-to-checkout" style="list-style-type: none;">
+              <button class="button button2" style="margin-top: 30px;"><a href="#" class="shop"
+                  style="font-size: 12px; color: white; font-weight: 700; text-decoration: none; font-family: sans-serif;">Proceed
+                  to Checkout</a></button>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="stickyfooter">
+    <app-footer></app-footer>
+  </div>
