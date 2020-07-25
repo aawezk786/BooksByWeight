@@ -77,12 +77,12 @@ import { CartComponent } from './cart/cart.component';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '630153345580-29pt86oukbipoj7sj3ofrhrdl5895rvq.apps.googleusercontent.com'
+              '334203302088-4gg488g1vi31oeolhoc3u4jbva686rt6.apps.googleusercontent.com'
             ),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId'),
+            provider: new FacebookLoginProvider('1217823168556176'),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,

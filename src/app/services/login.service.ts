@@ -20,4 +20,7 @@ export class LoginService {
   loginGoogle(googleId,name,email){
     return this.http.post(`${API_LIVE}` + '/user/loginGoogle/?googleId=' + googleId + '&name=' + name + '&email=' + email,httpOptions );
   }
+  loginFacebook(facebookId,name,email){
+    return this.http.post(`${API_LIVE}` + '/user/loginFacebook/?facebookId=' + facebookId + '&name=' + name + '&email=' + email,httpOptions );
+  }
 }

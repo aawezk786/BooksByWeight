@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
             
             
            this.loginService.loginGoogle(googleId = data.id,name=data.name,email = data.email).subscribe(result=>{
-            console.log(googleId)
+            
              if(result){
                this.succ = result;
               this.Success = true;
@@ -54,8 +54,30 @@ export class LoginComponent implements OnInit {
        
       }
      
-      signInWithFB(): void {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+      signInWithFB(facebookId = this.User.id,name= this.User.name,email = this.User.email,user = this.User): void {
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(data =>
+          {
+            
+            
+           this.loginService.loginFacebook(facebookId = data.id,name=data.name,email = data.email).subscribe(result=>{
+            
+             if(result){
+               this.succ = result;
+              this.Success = true;
+              this.Error = false;
+              this.succ_message = "Login SuccessFull";
+              localStorage.setItem("User", JSON.stringify(this.succ.token) );
+              setTimeout(()=>{
+                this.router.navigate(['/']);
+              },2000);
+             
+             }
+           },err=>{
+             console.error(err);
+           })
+           
+          }
+          );
       }
      
       signOut(): void {
