@@ -1,4 +1,8 @@
-
+nav{
+  background-color: #f6f6f6 !important;
+  opacity: 0.8;
+  font-weight: bolder;
+}
 
 .navbar, .nav-tabs{
   margin-bottom: 0;
