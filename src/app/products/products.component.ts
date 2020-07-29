@@ -5,6 +5,8 @@ import { BooksService } from '../services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../services/filter.service';
 import { CategoryService } from '../services/category.service';
+import { WishlistService } from '../services/wishlist.service';
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -25,13 +27,15 @@ export class ProductsComponent implements OnInit {
   books$: any = [];
   totalBooks: number;
   pages: number = 1;
-
+  bookId : any;
   constructor(
+    private toastr: ToastrService,
     private CatService : CategoryService,
     private router: Router,
     private newService: BooksService,
     private route: ActivatedRoute,
-    private filter: FilterService
+    private filter: FilterService,
+    private wish : WishlistService
   ) {}
 
   ngOnInit(): void {
@@ -121,7 +125,18 @@ export class ProductsComponent implements OnInit {
   productHome(_id) {
     window.open('details/' + _id);
   }
-
+  addWish(_id) {
+    if(localStorage.getItem('User')){
+      this.wish.postProduct( _id).subscribe(res =>{
+        this.toastr.success('Product Successfully Added', 'BooksByWeight', { timeOut: 3000 });
+      },err=>{
+        this.toastr.warning('Product already Added', 'BooksByWeight', { timeOut: 3000 });
+      });
+    }else{
+      this.router.navigate(['/login']);
+    }
+   
+  }
   public price() {
     this.router.navigate(['books/sortBy100/200']);
   }

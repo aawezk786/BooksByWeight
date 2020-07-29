@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BooksService } from './../services/books.service';
+import { WishlistService } from '../services/wishlist.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 declare var $:any
 @Component({
   selector: 'app-popularcollection',
@@ -36,7 +39,11 @@ autoplayHoverPause:true,
     nav: false
   }
   books$ :any = [];
-  constructor(private newService : BooksService) { }
+  constructor(
+    private toastr: ToastrService,
+    private newService : BooksService,
+    private wish : WishlistService,
+    private router : Router) { }
 
   ngOnInit(): void {
     this.newService.getBooks()
@@ -61,6 +68,18 @@ this.jquery_code();
   }
   productHome(_id) {
     window.open( 'details/'+_id );
+  }
+  addWish(_id) {
+    if(localStorage.getItem('User')){
+      this.wish.postProduct( _id).subscribe(res =>{
+        this.toastr.success('Product Successfully Added', 'BooksByWeight', { timeOut: 3000 });
+      },err=>{
+        this.toastr.warning('Product already Added', 'BooksByWeight', { timeOut: 3000 });
+      });
+    }else{
+      this.router.navigate(['/login']);
+    }
+   
   }
 
 }

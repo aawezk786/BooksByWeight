@@ -35,6 +35,8 @@ import {
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     CartComponent,
     WishlistComponent,
     CheckoutComponent
+  
 
 
   ],
@@ -66,9 +69,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     SocialLoginModule,
-    CarouselModule
-    
-    
+    CarouselModule,
+    ToastrModule.forRoot(),
 
 
   ],
@@ -81,7 +83,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '334203302088-4gg488g1vi31oeolhoc3u4jbva686rt6.apps.googleusercontent.com'
+              '630153345580-29pt86oukbipoj7sj3ofrhrdl5895rvq.apps.googleusercontent.com'
             ),
           },
           {

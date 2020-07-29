@@ -13,9 +13,9 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.0",
+    "@angular/cli": "^10.0.4",
     "@angular/common": "~10.0.0",
     "@angular/compiler": "~10.0.0",
-    "@angular/cli": "^10.0.4",
     "@angular/compiler-cli": "^10.0.5",
     "@angular/core": "~10.0.0",
     "@angular/forms": "~10.0.0",
@@ -36,6 +36,7 @@
     "ngx-flickity": "0.0.9",
     "ngx-owl-carousel-o": "^3.0.1",
     "ngx-pagination": "^5.0.0",
+    "ngx-toastr": "^13.0.0",
     "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "rellax": "^1.12.1",

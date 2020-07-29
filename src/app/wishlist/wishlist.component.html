@@ -10,16 +10,19 @@
                 left: 50%;
                 transform: translate(-50%, -50%); font-size: xx-large;" class="org">
         BOOKS <br><br>
-        Home / Wishlist
-
+        Home / Wishlist<br><br>
+        <div  *ngIf="length == 0" class="" style=" margin-top: 50px; text-align: center;
+        font-size: 3rem;">Your Cart Is Empty</div>
       </div>
 
     </div>
-
+  
     <div class="container">
+      
       <div class="row">
         <div class="col-sm-12">
-          <table style="text-align: center; width:100%;">
+
+          <table style="text-align: center; width:100%;" *ngIf="length > 0">
             <tr style="border: 1px solid #c1c1c1;">
               <th style="border: 1px solid #c1c1c1;">REMOVE</th>
               <th style="border: 1px solid #c1c1c1;">BOOK COVER</th>
@@ -31,24 +34,30 @@
 
             </tr>
             <tr style="border-width: 1px;" *ngFor="let wish of book$.books">
-              <td style="border-width: 1px"><a href="#"><img src="../../assets/images/bin.png"></a> </td>
-              <td style="border-width: 1px"><a><img src=" ../../assets/images/4.png" class="high"></a></td>
+              <td style="border-width: 1px; cursor: pointer;"><a>
+
+                    <span class="material-icons" (click)="deletePro(wish._id)"
+                    style="font-size: 5rem;">delete_forever</span></a> </td>
+              <td style="border-width: 1px"><a><img src="{{wish.book.book_img[0]}}" class="high"></a></td>
               <td style="border-width: 1px"><a href="#"
-                  style="font-size: 14px; color: #6f6f6f; font-weight: 700; text-decoration: none;"></a>{{wish.book.book_name}}</td>
-              <td style="border-width: 1px"><span
-                  style="font-size: 14px; color: #6f6f6f; font-weight: 700;">₹165.00</span>
+                  style="font-size: 14px; color: #6f6f6f; font-weight: 700; text-decoration: none;"></a>{{wish.book.book_name}}
               </td>
-              <td style="border-width: 1px"><span>in stock</span></td>
+              <td style="border-width: 1px"><span
+                  style="font-size: 14px; color: #6f6f6f; font-weight: 700;">{{wish.book.selling_price}}</span>
+              </td>
+              <td style="border-width: 1px"><span *ngIf="wish.book.quantity">In Stock</span>
+                <span *ngIf="!wish.book.quantity">Out Of Stock</span></td>
               <td style="border-width: 1px ; padding: 10px;"> <button class="button button1"><a href="#" class="shop"
                     style="font-size: 12px; color: white; font-weight: 700;
                  text-decoration: none; ">ADD TO CART</a></button></td>
 
 
             </tr>
-          
+
 
           </table>
-          <div style="margin-top: 10px; border-width: 1px; color: #6f6f6f;">
+          <br><br>
+          <div style="margin-top: 10px; border-width: 1px; color: #6f6f6f;" *ngIf="length > 0">
 
             <div class="justify-content-center" style="text-align: center;">
               <span style=" text-decoration: none; color: #666666;">Share:</span><br>
@@ -65,17 +74,16 @@
 
               <a href="#" class="round" style="margin-right: 10px;"><img src="../../assets/icons/google.png"
                   height="30px" width="30px" alt=""></a>
-<br><br><br><br><br>
+              <br><br><br><br><br>
             </div>
 
-          </div>
 
+          </div>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</div>
-<div class="stickyfooter">
-  <app-footer></app-footer>
-</div>
+  <div class="stickyfooter">
+    <app-footer></app-footer>
+  </div>

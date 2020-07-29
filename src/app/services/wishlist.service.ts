@@ -1,6 +1,6 @@
-import { httpOptions } from './../models/api.model';
+import { httpOptions, API_URL } from './../models/api.model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_LIVE,  } from '../models/api.model';
 
@@ -9,13 +9,56 @@ import { API_LIVE,  } from '../models/api.model';
 })
 
 export class WishlistService {
-  
-
+ 
   constructor(private http: HttpClient) { }
   
-public getwish():Observable<any>{
+ 
 
-    return this.http.get<any[]>(`${API_LIVE}`+"/wishlist/ByUser",httpOptions);
+
+public getwish():Observable<any>{
+   
+
+    const httpOptionsauth = {
+     
+     headers: new HttpHeaders({
+       'Content-Type':  'application/json',
+       'Authorization': 'Bearer ' + localStorage.getItem('User').slice(1,-1)
+ 
+     })
+   }
+   
+ 
+
+ return this.http.get<any[]>(`${API_LIVE}`+"/wishlist/ByUser",httpOptionsauth);
+
+}
+public postProduct(bookId ){
+   
+
+  const httpOptionsauth = {
+   
+   headers: new HttpHeaders({
+     'Authorization': 'Bearer ' + localStorage.getItem('User').slice(1,-1)
+
+   })
+ }
+
+return this.http.post(`${API_LIVE}`+"/wishlist/" +bookId,localStorage.getItem('User').slice(1,-1),httpOptionsauth);
+
+}
+
+public deleteProduct(WishlistId ){
+   
+
+  const httpOptionsauth = {
+   
+   headers: new HttpHeaders({
+     'Authorization': 'Bearer ' + localStorage.getItem('User').slice(1,-1)
+
+   })
+ }
+const token = localStorage.getItem('User').slice(1,-1);
+return this.http.delete(`${API_LIVE}`+"/wishlist/" +WishlistId,httpOptionsauth);
 
 }
 
