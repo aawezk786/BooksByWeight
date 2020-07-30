@@ -16,6 +16,7 @@ declare var $: any;
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
+  fav = true;
   first: any = '100/200';
   second: any = '200/300';
   third: any = '300/400';
@@ -27,18 +28,20 @@ export class ProductsComponent implements OnInit {
   books$: any = [];
   totalBooks: number;
   pages: number = 1;
-  bookId : any;
+  bookId: any;
   constructor(
     private toastr: ToastrService,
-    private CatService : CategoryService,
+    private CatService: CategoryService,
     private router: Router,
     private newService: BooksService,
     private route: ActivatedRoute,
     private filter: FilterService,
-    private wish : WishlistService
-  ) {}
+    private wish: WishlistService
+  ) { }
 
   ngOnInit(): void {
+    this.jquery_code();
+
     this.CatService.getCategoryById(this.route.snapshot.params._id).subscribe(res => {
       this.books$ = res;
     });
@@ -66,24 +69,18 @@ export class ProductsComponent implements OnInit {
     if (this.router.url == '/books/sortBydesc') {
       this.filtersSort(this.variant);
     }
-    this.jquery_code();
+
   }
 
   jquery_code() {
-    $(document).ready(function () {
-      
-    });
+
   }
 
   /* Set the width of the side navigation to 250px */
   public openNav() {
-  
-      $("#mySidenav").css("width","400px")
-     
-        
-    
-  
-    
+
+    $("#mySidenav").css("width", "400px")
+
   }
 
   /* Set the width of the side navigation to 0 */
@@ -91,19 +88,20 @@ export class ProductsComponent implements OnInit {
     document.getElementById('mySidenav').style.width = '0';
   }
 
-   on() {
+  on() {
     document.getElementById("overlay").style.display = "block";
   }
-  
-   off() {
+
+  off() {
     document.getElementById("overlay").style.display = "none";
-  } 
+  }
 
   book() {
     this.newService.getBooks().subscribe((data) => {
       this.books$ = data;
       this.totalBooks = data.totalBooks.length;
       this.pages = 1;
+
     });
   }
 
@@ -126,16 +124,23 @@ export class ProductsComponent implements OnInit {
     window.open('details/' + _id);
   }
   addWish(_id) {
-    if(localStorage.getItem('User')){
-      this.wish.postProduct( _id).subscribe(res =>{
+    if (localStorage.getItem('User')) {
+
+
+      this.wish.postProduct(_id).subscribe(res => {
+
         this.toastr.success('Product Successfully Added', 'BooksByWeight', { timeOut: 3000 });
-      },err=>{
+        this.fav = !this.fav;
+        console.log(this.fav);
+        return this.fav;
+        
+      }, err => {
         this.toastr.warning('Product already Added', 'BooksByWeight', { timeOut: 3000 });
       });
-    }else{
+    } else {
       this.router.navigate(['/login']);
     }
-   
+
   }
   public price() {
     this.router.navigate(['books/sortBy100/200']);
@@ -159,9 +164,6 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['books/sortBydesc']);
   }
 
-  public _opened = false;
 
-  public _toggleSidebar() {
-    this._opened = !this._opened;
-  }
+
 }

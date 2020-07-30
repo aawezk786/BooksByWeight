@@ -1,68 +1,68 @@
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" style="left: 0;" class="closebtn" (click)="off()" (click)="closeNav()">&times;</a>
- 
- <br><br>
- 
+
+  <br><br>
+
   <ul class="list-group " style="cursor: pointer;">
     <li class="list-group-item " aria-current="true" style="font-size: 2rem;">
-     BOOKS BY PRICE
+      BOOKS BY PRICE
     </li>
     <li class="list-group-item" aria-current="true">
-     
-        <span (click)="price()">
-          &#8377;100 - &#8377;200
-        
-        </span>
-     
-     
-  
+
+      <span (click)="price()">
+        &#8377;100 - &#8377;200
+
+      </span>
+
+
+
     </li>
     <li class="list-group-item" aria-current="true">
       <span (click)="price1()">
         &#8377;200 - &#8377;300
       </span>
-  
+
     </li>
     <li class="list-group-item" aria-current="true">
       <span (click)="price2()">
         &#8377;300 - &#8377;400
       </span>
-  
+
     </li>
     <li class="list-group-item" aria-current="true">
-      <span  (click)="price3()">
+      <span (click)="price3()">
         &#8377;400 - &#8377;500
       </span>
-  
+
     </li>
     <li class="list-group-item" aria-current="true">
-      <span  (click)="price4()">
+      <span (click)="price4()">
         &#8377;500 Onwards
       </span>
-  
+
     </li>
     <li class="list-group-item" aria-current="true">
       <span style="font-weight: bolder;" (click)="lowTohigh()">
-  Price Low To High
+        Price Low To High
       </span>
-  
+
     </li>
-  
+
     <li class="list-group-item" aria-current="true">
       <span style="font-weight: bolder;" (click)="highTolow()">
-  Price High To Low
+        Price High To Low
       </span>
-  
+
     </li>
-  
-  
+
+
   </ul>
 
 </div>
 
 
 <div id="main">
-  <div id="overlay" (click)="closeNav()" (click)="off()"></div> 
+  <div id="overlay" (click)="closeNav()" (click)="off()"></div>
   <div class="p-2">
     <div class="section1">
 
@@ -92,7 +92,8 @@
             </div>
             <div class="col-4">
               <h3 class="text-right">
-                <a style="text-decoration: none; cursor: pointer;" class=" org" (click)="on()" (click)="openNav()">Filters</a>
+                <a style="text-decoration: none; cursor: pointer;" class=" org" (click)="on()"
+                  (click)="openNav()">Filters</a>
               </h3>
             </div>
           </div>
@@ -119,9 +120,17 @@
                     <a href="#">
                       <span class="material-icons org">
                         add_shopping_cart &nbsp;&nbsp;
-                      </span></a><a ><span (click)="addWish(books._id)" class="material-icons org wish">
+                      </span></a>
+                    <a *ngIf="fav">
+                      <span (click)="addWish(books._id)" class="material-icons org wish">
                         favorite_border
-                      </span></a></h3>
+                      </span>
+                    </a>
+                    <a *ngIf="!fav"><span  (click)="deletePro(wish._id)" class="material-icons org wish">
+                        favorite
+                      </span>
+                    </a>
+                  </h3>
 
                 </div>
 
@@ -162,4 +171,3 @@
     <app-footer></app-footer>
   </div>
 </div>
-
