@@ -110,7 +110,7 @@
                 <img class="card-img-top" height="340px" src="{{books.book_img[0]}}" alt=" BOOKS ">
                 <div class="content-details fadeIn-bottom">
 
-                  <h3 class="content-title">
+                  <h3 class="content-title"  >
                     <a target="_blank" style="color: black; cursor: pointer;" (click)="productHome(books._id)">
                       <span class="material-icons org">
                         add &nbsp;&nbsp;
@@ -121,15 +121,16 @@
                       <span class="material-icons org">
                         add_shopping_cart &nbsp;&nbsp;
                       </span></a>
-                    <a *ngIf="fav">
-                      <span (click)="addWish(books._id)" class="material-icons org wish">
-                        favorite_border
-                      </span>
-                    </a>
-                    <a *ngIf="!fav"><span  (click)="deletePro(wish._id)" class="material-icons org wish">
-                        favorite
-                      </span>
-                    </a>
+                  <a *ngIf="jasonArray"  >
+                    <span (click)="addWish(books._id)" class="material-icons org wish">
+                      favorite_border
+                    </span>
+                  </a>
+                
+                  <a *ngIf="!jasonArray" ><span  (click)="deletePro(books._id)" class="material-icons org wish">
+                      favorite
+                    </span>
+                  </a>
                   </h3>
 
                 </div>

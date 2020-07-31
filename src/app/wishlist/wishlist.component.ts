@@ -14,7 +14,6 @@ export class WishlistComponent implements OnInit {
   book$: any = [];
   Error = false;
   message: any;
- 
   length:any;
   constructor(private toastr: ToastrService, private wish: WishlistService, private router: Router, private sanitizer: DomSanitizer) { }
 
@@ -24,6 +23,7 @@ this.jquery_code();
 
     if (localStorage.getItem('User')) {
       this.wish.getwish().subscribe(data => {
+
         this.book$ = data;
         this.length = data.books.length;
     
@@ -31,12 +31,10 @@ this.jquery_code();
       })
     } else {
       this.Error = true;
-      this.toastr.error('YOU NEED TO LOGIN', 'BooksByWeight', { timeOut: 3000 });
-
-
       setTimeout(() => {
         this.router.navigate(['/login']);
       }, 1000);
+      this.toastr.error('YOU NEED TO LOGIN', 'BooksByWeight', { timeOut: 3000 });
 
     }
 
@@ -53,7 +51,7 @@ this.jquery_code();
     this.toastr.success('Product Has Been Remove', 'BooksByWeight', { timeOut: 2000 });
     setTimeout(() => {
       window.location.reload();
-    }, 2000);
+    }, 1000);
   });
 }
 

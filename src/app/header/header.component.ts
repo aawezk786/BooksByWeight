@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 declare var $:any;
 import * as jwt_decode from 'jwt-decode';
+import { WishlistService } from '../services/wishlist.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,9 +11,21 @@ import * as jwt_decode from 'jwt-decode';
 export class HeaderComponent implements OnInit {
 session = false;
 UserData : any;
-  constructor() { }
+  book$: any;
+  length: any;
+  constructor(
+    private wish: WishlistService
+    ) { }
 
   ngOnInit(): void {
+
+    this.wish.getwish().subscribe(data => {
+      this.book$ = data;
+      this.length = data.books.length;
+     
+    })
+
+
     this.jquery_code();
     this.isLogin();
   }

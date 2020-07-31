@@ -36,7 +36,7 @@
             <tr style="border-width: 1px;" *ngFor="let wish of book$.books">
               <td style="border-width: 1px; cursor: pointer;"><a>
 
-                    <span class="material-icons" (click)="deletePro(wish._id)"
+                    <span class="material-icons" (click)="deletePro(wish.book._id)"
                     style="font-size: 5rem;">delete_forever</span></a> </td>
               <td style="border-width: 1px"><a><img src="{{wish.book.book_img[0]}}" class="high"></a></td>
               <td style="border-width: 1px"><a href="#"

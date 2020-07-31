@@ -29,6 +29,17 @@ export class ProductsComponent implements OnInit {
   totalBooks: number;
   pages: number = 1;
   bookId: any;
+
+  book$: any = [];
+  wid: any = [];
+  size: any = {};
+  Error = false;
+  message: any;
+  length: any;
+  wid1: any = [];
+  pid: any = [];
+  pid1: any = [];
+  jasonArray:any =[];
   constructor(
     private toastr: ToastrService,
     private CatService: CategoryService,
@@ -40,6 +51,68 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+// let pid2 = [this.pid1];
+// let wid2 = [this.wid1];
+
+//     let jsonArray = [];
+
+//     jsonArray = wid2.map(i => {
+//       return { 'name': i, 'matched': pid2.includes(i) };
+//     });
+//     console.log(jsonArray);
+
+// const array1 = [this.pid1] 
+// const array2 = [this.wid1] 
+  
+// // Function definiton with passing two arrays 
+
+      
+//     // Loop for array1 
+//     for(let i = 0; i < array1.length; i++) { 
+          
+//         // Loop for array2 
+//         for(let j = 0; j < array2.length; j++) { 
+              
+//             // Compare the element of each and 
+//             // every element from both of the 
+//             // arrays 
+//             if(array1[i] === array2[j]) { 
+              
+//                 // Return if common element found 
+                
+//             console.log(true)
+//             } 
+//         } 
+//     } 
+      
+//     // Return if no common element exist 
+//     console.log(false)
+
+
+
+    this.wish.getwish().subscribe(data => {
+
+      this.book$ = data;
+      const size = data.books
+
+
+      for (var { book: books } of size) {
+
+        this.wid = books;
+        const size1 = books._id
+
+        this.wid1.push(size1)
+
+
+      }
+
+
+
+    })
+    console.log(this.wid1)
+
+
     this.jquery_code();
 
     this.CatService.getCategoryById(this.route.snapshot.params._id).subscribe(res => {
@@ -76,6 +149,8 @@ export class ProductsComponent implements OnInit {
 
   }
 
+
+
   /* Set the width of the side navigation to 250px */
   public openNav() {
 
@@ -99,6 +174,19 @@ export class ProductsComponent implements OnInit {
   book() {
     this.newService.getBooks().subscribe((data) => {
       this.books$ = data;
+
+      const pid = data.books
+
+      for (var { _id: id } of pid) {
+
+
+
+        this.pid1.push(id);
+
+
+      }
+      console.log(this.pid1)
+
       this.totalBooks = data.totalBooks.length;
       this.pages = 1;
 
@@ -130,15 +218,18 @@ export class ProductsComponent implements OnInit {
       this.wish.postProduct(_id).subscribe(res => {
 
         this.toastr.success('Product Successfully Added', 'BooksByWeight', { timeOut: 3000 });
-        this.fav = !this.fav;
+    
         console.log(this.fav);
-        return this.fav;
-        
+
+
+
       }, err => {
         this.toastr.warning('Product already Added', 'BooksByWeight', { timeOut: 3000 });
       });
     } else {
+
       this.router.navigate(['/login']);
+      this.toastr.error('YOU NEED TO LOGIN TO SAVE WISHLIST', 'BooksByWeight', { timeOut: 3000 });
     }
 
   }
@@ -164,6 +255,16 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['books/sortBydesc']);
   }
 
+  deletePro(WishlistId) {
+    this.wish.deleteProduct(WishlistId).subscribe(res => {
 
+      this.toastr.success('Product Has Been Remove', 'BooksByWeight', { timeOut: 2000 });
+    
+      console.log(this.fav);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    });
+  }
 
 }
