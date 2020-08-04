@@ -32,7 +32,7 @@ public getwish():Observable<any>{
  return this.http.get<any[]>(`${API_LIVE}`+"/wishlist/ByUser",httpOptionsauth);
 
 }
-public postProduct(bookId ){
+public postProduct(_id ){
    
 
   const httpOptionsauth = {
@@ -43,11 +43,11 @@ public postProduct(bookId ){
    })
  }
 
-return this.http.post(`${API_LIVE}`+"/wishlist/" +bookId,localStorage.getItem('User').slice(1,-1),httpOptionsauth);
+return this.http.post(`${API_LIVE}`+"/wishlist/" +_id,localStorage.getItem('User').slice(1,-1),httpOptionsauth);
 
 }
 
-public deleteProduct(WishlistId ){
+public deleteProduct(_id ){
    
 
   const httpOptionsauth = {
@@ -58,7 +58,7 @@ public deleteProduct(WishlistId ){
    })
  }
 const token = localStorage.getItem('User').slice(1,-1);
-return this.http.delete(`${API_LIVE}`+"/wishlist/" +WishlistId,httpOptionsauth);
+return this.http.delete(`${API_LIVE}`+"/wishlist/" +_id,httpOptionsauth);
 
 }
 

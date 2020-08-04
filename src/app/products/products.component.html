@@ -104,52 +104,7 @@
           <div class="col-xs-12 col-sm-4 col-md-3" *ngFor="let books of books$.books |
        paginate: {  itemsPerPage: 8, currentPage: pages, totalItems: totalBooks} ">
 
-            <div class="s nopadding" data-aos="zoom-in">
-              <div class="content">
-                <div class="content-overlay"></div>
-                <img class="card-img-top" height="340px" src="{{books.book_img[0]}}" alt=" BOOKS ">
-                <div class="content-details fadeIn-bottom">
-
-                  <h3 class="content-title"  >
-                    <a target="_blank" style="color: black; cursor: pointer;" (click)="productHome(books._id)">
-                      <span class="material-icons org">
-                        add &nbsp;&nbsp;
-                      </span>
-                    </a>
-
-                    <a href="#">
-                      <span class="material-icons org">
-                        add_shopping_cart &nbsp;&nbsp;
-                      </span></a>
-                  <a *ngIf="jasonArray"  >
-                    <span (click)="addWish(books._id)" class="material-icons org wish">
-                      favorite_border
-                    </span>
-                  </a>
-                
-                  <a *ngIf="!jasonArray" ><span  (click)="deletePro(books._id)" class="material-icons org wish">
-                      favorite
-                    </span>
-                  </a>
-                  </h3>
-
-                </div>
-
-              </div>
-            </div>
-
-            <div class="text-center" style="text-align: center; padding: 0px 20px 0px 20px;">
-              {{books.book_name}}
-              <br>
-            </div>
-            <div class="text-center">
-              <s style="color: rgba(107, 105, 105, 0.61);">&#8377;
-                {{books.mrp}}
-              </s> &nbsp;
-              <span style="color:red">&#8377;
-                {{books.selling_price}}Rs
-              </span>
-            </div>
+          <app-product-item [productItem]= "books"  ></app-product-item>
 
           </div>
         </div>

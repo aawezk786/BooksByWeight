@@ -36,6 +36,7 @@ import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ProductItemComponent } from './products/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ToastrModule } from 'ngx-toastr';
     ProductsdetailComponent,
     CartComponent,
     WishlistComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ProductItemComponent
   
 
 

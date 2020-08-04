@@ -32,9 +32,7 @@ autoplayHoverPause:true,
       740: {
         items: 3
       },
-      940: {
-        items: 4
-      }
+     
     },
     nav: false
   }

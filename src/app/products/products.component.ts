@@ -1,5 +1,5 @@
 import { NgxPaginationModule } from 'ngx-pagination';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BooksService } from '../services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +16,7 @@ declare var $: any;
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  fav = true;
+
   first: any = '100/200';
   second: any = '200/300';
   third: any = '300/400';
@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
   pages: number = 1;
   bookId: any;
 
-  book$: any = [];
+  wish$: any = [];
   wid: any = [];
   size: any = {};
   Error = false;
@@ -39,7 +39,11 @@ export class ProductsComponent implements OnInit {
   wid1: any = [];
   pid: any = [];
   pid1: any = [];
-  jasonArray:any =[];
+  match: any;
+  books: any = [];
+  
+
+
   constructor(
     private toastr: ToastrService,
     private CatService: CategoryService,
@@ -48,76 +52,86 @@ export class ProductsComponent implements OnInit {
     private route: ActivatedRoute,
     private filter: FilterService,
     private wish: WishlistService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
-// let pid2 = [this.pid1];
-// let wid2 = [this.wid1];
-
-//     let jsonArray = [];
-
-//     jsonArray = wid2.map(i => {
-//       return { 'name': i, 'matched': pid2.includes(i) };
-//     });
-//     console.log(jsonArray);
-
-// const array1 = [this.pid1] 
-// const array2 = [this.wid1] 
-  
-// // Function definiton with passing two arrays 
-
-      
-//     // Loop for array1 
-//     for(let i = 0; i < array1.length; i++) { 
-          
-//         // Loop for array2 
-//         for(let j = 0; j < array2.length; j++) { 
-              
-//             // Compare the element of each and 
-//             // every element from both of the 
-//             // arrays 
-//             if(array1[i] === array2[j]) { 
-              
-//                 // Return if common element found 
-                
-//             console.log(true)
-//             } 
-//         } 
-//     } 
-      
-//     // Return if no common element exist 
-//     console.log(false)
-
-
-
-    this.wish.getwish().subscribe(data => {
-
-      this.book$ = data;
-      const size = data.books
-
-
-      for (var { book: books } of size) {
-
-        this.wid = books;
-        const size1 = books._id
-
-        this.wid1.push(size1)
-
-
-      }
-
-
-
-    })
-    console.log(this.wid1)
-
-
+    
     this.jquery_code();
+    this.loadfilter();
+  this.loadwish();
+    this.loadcat();
+    
+   console.log(this.wid1)
+  
+  }
 
-    this.CatService.getCategoryById(this.route.snapshot.params._id).subscribe(res => {
+
+  jquery_code() {}
+
+  loadcat(){
+    this.CatService.getCategoryById(this.route.snapshot.params._id).subscribe(
+      (res) => {
+        this.books$ = res;
+      }
+    );
+  }
+
+  /* Set the width of the side navigation to 250px */
+  public openNav() {
+    $('#mySidenav').css('width', '400px');
+  }
+
+  /* Set the width of the side navigation to 0 */
+  closeNav() {
+    document.getElementById('mySidenav').style.width = '0';
+  }
+
+  on() {
+    document.getElementById('overlay').style.display = 'block';
+  }
+
+  off() {
+    document.getElementById('overlay').style.display = 'none';
+  }
+
+  book() {
+    this.newService.getBooks().subscribe((data) => {
+      this.books$ = data;
+
+      const pid = data.books;
+
+      for (var { _id: id } of pid) {
+        this.pid1.push(id);
+      }
+      console.log(this.pid1);
+
+      this.totalBooks = data.totalBooks.length;
+      this.pages = 1;
+    });
+  }
+
+  filters(modal: String) {
+    this.filter.priceDefine(modal).subscribe((res) => {
       this.books$ = res;
     });
+  }
+  filtersSort(variant: String) {
+    this.filter.sortBy(variant).subscribe((res) => {
+      this.books$ = res;
+    });
+  }
+  onPageChange(page: number = 1) {
+    this.pages = page;
+    window.scrollTo(0, 520);
+  }
+
+  productHome(_id) {
+    window.open('details/' + _id);
+  }
+ 
+
+
+  loadfilter(){
     if (this.router.url == '/books/sortBy100/200') {
       this.filters(this.first);
     }
@@ -142,97 +156,8 @@ export class ProductsComponent implements OnInit {
     if (this.router.url == '/books/sortBydesc') {
       this.filtersSort(this.variant);
     }
-
   }
 
-  jquery_code() {
-
-  }
-
-
-
-  /* Set the width of the side navigation to 250px */
-  public openNav() {
-
-    $("#mySidenav").css("width", "400px")
-
-  }
-
-  /* Set the width of the side navigation to 0 */
-  closeNav() {
-    document.getElementById('mySidenav').style.width = '0';
-  }
-
-  on() {
-    document.getElementById("overlay").style.display = "block";
-  }
-
-  off() {
-    document.getElementById("overlay").style.display = "none";
-  }
-
-  book() {
-    this.newService.getBooks().subscribe((data) => {
-      this.books$ = data;
-
-      const pid = data.books
-
-      for (var { _id: id } of pid) {
-
-
-
-        this.pid1.push(id);
-
-
-      }
-      console.log(this.pid1)
-
-      this.totalBooks = data.totalBooks.length;
-      this.pages = 1;
-
-    });
-  }
-
-  filters(modal: String) {
-    this.filter.priceDefine(modal).subscribe((res) => {
-      this.books$ = res;
-    });
-  }
-  filtersSort(variant: String) {
-    this.filter.sortBy(variant).subscribe((res) => {
-      this.books$ = res;
-    });
-  }
-  onPageChange(page: number = 1) {
-    this.pages = page;
-    window.scrollTo(0, 520);
-  }
-
-  productHome(_id) {
-    window.open('details/' + _id);
-  }
-  addWish(_id) {
-    if (localStorage.getItem('User')) {
-
-
-      this.wish.postProduct(_id).subscribe(res => {
-
-        this.toastr.success('Product Successfully Added', 'BooksByWeight', { timeOut: 3000 });
-    
-        console.log(this.fav);
-
-
-
-      }, err => {
-        this.toastr.warning('Product already Added', 'BooksByWeight', { timeOut: 3000 });
-      });
-    } else {
-
-      this.router.navigate(['/login']);
-      this.toastr.error('YOU NEED TO LOGIN TO SAVE WISHLIST', 'BooksByWeight', { timeOut: 3000 });
-    }
-
-  }
   public price() {
     this.router.navigate(['books/sortBy100/200']);
   }
@@ -255,16 +180,29 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['books/sortBydesc']);
   }
 
-  deletePro(WishlistId) {
-    this.wish.deleteProduct(WishlistId).subscribe(res => {
 
-      this.toastr.success('Product Has Been Remove', 'BooksByWeight', { timeOut: 2000 });
-    
-      console.log(this.fav);
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
+  loadwish() {
+    this.wish.getwish().subscribe((data) => {
+      this.wish$ = data;
+
+      const size = this.wish$.books;
+      
+      for (var { book: books } of size) {
+      
+        this.wid = books;
+     
+        const size1 = books._id;
+
+        this.wid1.push(size1);
+        
+      }
+      for(let w of this.wid1 ){
+     
+        
+      }
+     
     });
+    
   }
 
 }
